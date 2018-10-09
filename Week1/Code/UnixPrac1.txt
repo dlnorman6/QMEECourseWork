@@ -1,0 +1,7 @@
+#1 find ../Data *fasta -exec wc -l {} \;
+#2 tail -n +2 ../Data/E.coli.fasta
+#3 tail -n +2 ../Data/E.coli.fasta | wc -m
+#4 grep -o ATGC ../Data/E.coli.fasta | wc -l
+#5 bc -l <<< "scale=2;$(grep -o AT ../Data/E.coli.fasta | wc -l)/$(grep -o GC ../Data/E.coli.fasta | wc -l)"
+
+
