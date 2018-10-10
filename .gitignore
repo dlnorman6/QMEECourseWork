@@ -2,4 +2,6 @@
 *.tmp
 *.log
 *.pyc
-*pycache*
+*pycache/
+*Results/**
+*.pdf
