@@ -1,5 +1,8 @@
 #!/bin/bash
+# Author: Danielle Norman
+# Date: Oct 2018
 # Shows the use of variables
+
 MyVar='some string'
 echo 'the current value of the variable is' $MyVare
 echo 'Please enter a new string'

@@ -1,4 +1,9 @@
 #!/bin/bash
+# Author: Danielle Norman
+# Date: Oct 2018
+# Description: compiles LaTeX file $1.tex, opens the created pdf and
+# removes the extra files created
+
 pdflatex $1.tex
 pdflatex $1.tex
 bibtex $1
