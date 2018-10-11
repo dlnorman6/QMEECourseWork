@@ -1,14 +1,28 @@
 #!/usr/bin/env python3
 
-def foo1(x): # returns the square root of x
-    return x ** 0.5
+"""Some functions illustrating control flow"""
 
-def foo2(x,y):  # returns the largest value in the pair
+__appname__ = 'cfexercises2.py'
+__author__ = 'Danielle Norman (daniellenorman6@gmail.com)'
+__version__ = '0.0.1'
+
+## Imports ##
+import sys
+
+def foo1(x):
+    """Returns the square root of x"""
+    s = x ** 0.5
+    return "The square root of %d is %f" % (x,s)
+
+def foo2(x,y): 
+    """Returns the largest value in the pair"""
     if x > y:
-        return x
-    return y
+        return "%f is larger than %f" % (x,y)
+    return "%f is larger than %f" % (y,x)
 
-def foo3(x, y, z): # moves largest value to the end
+def foo3(x, y, z):
+    """Reorders such that the largest value appears at the end"""
+    x1 = x; y1 = y; z1 = z
     if x > y:
         tmp = y
         y = x
@@ -17,17 +31,33 @@ def foo3(x, y, z): # moves largest value to the end
         tmp = z
         z = y
         y = tmp
-    return [x, y, z]
+    return "The largest number in [%f,%f,%f] is %f" %(x1, y1, z1, z)
 
-def foo4(x): # factorial
+def foo4(x):
+    """Returns x!"""
     result = 1
     for i in range(1, x + 1):
         result = result * i
-    return result
+    return "%f! is %f" % (x,result)
 
-def foo5(x): # a recursive function: factorial
+def foo5(x):
+    """Calculates x! recursively""" 
     if x == 1:
         return 1
     return x * foo5(x-1)
 
-foo5(10)
+def main(argv):
+    print(foo1(16))
+    print(foo2(2,3))
+    print(foo2(3,2))
+    print(foo3(8,9,7))
+    print(foo3(9,8,7))
+    print(foo4(5))
+    print(foo5(5))
+    return 0
+
+if __name__ == "__main__":
+    """Makes sure the "main" function is called from command line"""
+    status = main(sys.argv)
+    sys.exit(status)
+
