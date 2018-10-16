@@ -23,15 +23,6 @@ rainfall = (('JAN',111.4),
             ('DEC',142.2),
            )
 
-# (1) Use a list comprehension to create a list of month,rainfall tuples where
-# the amount of rain was greater than 100 mm.
- 
-# (2) Use a list comprehension to create a list of just month names where the
-# amount of rain was less than 50 mm. 
-
-# (3) Now do (1) and (2) using conventional loops (you can choose to do 
-# this before 1 and 2 !). 
-
 ## Script
 
 ## (1) create list of [month, rainfall] tuples where rainfall > 100mm using list comprehension

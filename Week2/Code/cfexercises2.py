@@ -46,6 +46,14 @@ def foo5(x):
         return 1
     return x * foo5(x-1)
 
+def foo6(x):
+    """Calculates the factorial of x"""
+    facto = 1
+    while x >= 1:
+        facto = facto * x
+        x = x-1
+    return facto
+
 def main(argv):
     print(foo1(16))
     print(foo2(2,3))
@@ -54,6 +62,7 @@ def main(argv):
     print(foo3(9,8,7))
     print(foo4(5))
     print(foo5(5))
+    print(foo6(5))
     return 0
 
 if __name__ == "__main__":

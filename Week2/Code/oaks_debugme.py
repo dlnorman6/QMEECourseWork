@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+
+"""Identifies oaks from a dataset and saves to output file"""
+
+__appname__ = 'oaks_debugme.py'
+__author__ = 'Danielle Norman (daniellenorman6@gmail.com)'
+__version__ = '0.0.1'
+
 import csv
 import sys
 import pdb
@@ -20,18 +28,18 @@ def is_an_oak(name):
 
 def main(argv): 
     f = open('../data/TestOaksData.csv','r')
-    g = open('../data/JustOaksData.csv','w')
+    g = open('../results/JustOaksData.csv','w') # output file
     taxa = csv.reader(f)
     csvwrite = csv.writer(g)
     oaks = set()
     for row in taxa:
-        if row[0] == 'Genus':
+        if row[0] == 'Genus': # write header to output file
             csvwrite.writerow([row[0], row[1]])
         else:
             print(row)
             print("The genus is: ") 
             print(row[0])
-            if is_an_oak(row[0]):
+            if is_an_oak(row[0]): # write oaks to output file
                 print('FOUND AN OAK!')
                 csvwrite.writerow([row[0], row[1]])
             print("") 

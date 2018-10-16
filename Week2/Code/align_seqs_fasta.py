@@ -1,14 +1,18 @@
 #!/usr/bin/env python3
 
+"""Aligns two sequences of DNA saved in separate files. Default files are fasta files saved in the data directory. The best alignment and corresponding number of base matches (score) is outputted to file."""
+
+__appname__ = 'align_seqs_fasta.py'
+__author__ = 'Danielle Norman (daniellenorman6@gmail.com)'
+__version__ = '0.0.1'
+
 import csv
 import sys
 import pdb
 import doctest
 
-# function that computes a score
-# by returning the number of matches 
-# starting from arbitrary startpoint
 def calculate_score(s1, s2, l1, l2, startpoint):
+    """Calculates the number of base matches, i.e. score, in two DNA sequences for each possible starting position"""    
     # startpoint is the point at which we want to start
     matched = "" # contains string for alignment
     score = 0
@@ -21,26 +25,20 @@ def calculate_score(s1, s2, l1, l2, startpoint):
             else:
                 matched = matched + "-"
 
-    # build some formatted output
-    # print("." * startpoint + matched)           
-    # print("." * startpoint + s2)
-    # print(s1)
-    # print(score)
-    # print("")
-
     return score
 
 def main(argv): 
-    if len(sys.argv) > 1:
+    if len(sys.argv) > 1: # if files specified, open
         f1 = open(sys.argv[1],'r')
         f2 = open(sys.argv[2],'r')
-    else:
+    else: # else use default files
         f1 = open('../../Week1/Data/407228326.fasta','r')
         f2 = open('../../Week1/Data/407228412.fasta','r')
     
-    g = open('../Results/FastaAligned.csv','w')
+    g = open('../results/FastaAligned.csv','w') # output file
     csvwrite = csv.writer(g)
 
+    ## Extract sequences from files
     seq1 = ''
     for row in f1:
         if row.startswith('>'):
@@ -55,16 +53,7 @@ def main(argv):
         seq2 = seq2 + row
     seq2 = seq2.replace("\n","")
  
-    # These are the two sequences to match
-    # seq = []
-    # for row in data:
-    #     seq.append(row)
-    # seq2 = seq[0][0]
-    # seq1 = seq[1][0]
-
-    # assign the longest sequence s1, and the shortest to s2
-    # l1 is the length of the longest, l2 that of the shortest
-
+    # assign the longest sequence s1, with length l1 and the shortest to s2, with length l2
     l1 = len(seq1)
     l2 = len(seq2)
     if l1 >= l2:
@@ -73,7 +62,7 @@ def main(argv):
     else:
         s1 = seq2
         s2 = seq1
-        l1, l2 = l2, l1 # swap the two lengths
+        l1, l2 = l2, l1 
 
     # now try to find the best match (highest score)
     my_best_align = None
@@ -85,8 +74,8 @@ def main(argv):
             my_best_align = "." * i + s2
             my_best_score = z
 
-    csvwrite.writerow(my_best_align)
-    csvwrite.writerow(s1)
+    csvwrite.writerow([my_best_align])
+    csvwrite.writerow([s1])
     csvwrite.writerow(["Best score:", my_best_score])
     return 0
 

@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 
-""" Computes the best match or matches if multiple have positions have the same score and prints all matches to output file "../Results/BetterAligned.csv:" """
+""" Computes the best match, or matches if multiple have positions have the same score, and prints all matches to output file "../results/BetterAligned.csv:" """
+
+__appname__ = 'align_seqs_better.py'
+__author__ = 'Danielle Norman (daniellenorman6@gmail.com)'
+__version__ = '0.0.1'
 
 import csv
 import sys
@@ -8,10 +12,8 @@ import pdb
 import doctest
 import pickle
 
-# function that computes a score
-# by returning the number of matches 
-# starting from arbitrary startpoint
 def calculate_score(s1, s2, l1, l2, startpoint):
+    """Calculates the number of base matches, i.e. score, in two DNA sequences for each possible starting position"""
     # startpoint is the point at which we want to start
     matched = "" # contains string for alignment
     score = 0
@@ -23,14 +25,6 @@ def calculate_score(s1, s2, l1, l2, startpoint):
                 score = score + 1
             else:
                 matched = matched + "-"
-
-    # build some formatted output
-    # print("." * startpoint + matched)           
-    # print("." * startpoint + s2)
-    # print(s1)
-    # print(score)
-    # print("")
-
     return score
 
 def main(argv): 
@@ -41,7 +35,7 @@ def main(argv):
         f1 = open('../../Week1/Data/407228326.fasta','r')
         f2 = open('../../Week1/Data/407228412.fasta','r')
     
-    g = open('../Results/BetterAligned.csv','w')
+    g = open('../results/BetterAligned.csv','w') # output file
     csvwrite = csv.writer(g)
 
     seq1 = ''
@@ -72,25 +66,22 @@ def main(argv):
     my_best_align = None
     my_best_score = -1
 
-    f = open('../Sandbox/seqsp.p','wb')
+    matches = [] # empty list
     for i in range(l1):
         z = calculate_score(s1, s2, l1, l2, i)
-        if z > my_best_score:
-            f = open('../Sandbox/seqsp.p','wb')
+        if z > my_best_score: # start list again
             my_best_align = "." * i + s2
             my_best_score = z
-            pickle.dump([my_best_score,my_best_align],f)
-        elif z == my_best_score:
+            matches = [my_best_align]
+        elif z == my_best_score: # add match to list of matches with same score
             my_best_align = "." * i + s2
-            pickle.dump(my_best_align,f)
-    f.close()
-    f = open('../Sandbox/seqsp.p','rb')
-    best_aligns = pickle.load(f)
-    f.close() 
-    print(best_aligns)   
+            matches.append(my_best_align)
+    
+    print(len(matches)) # print number of matches
+  
+    csvwrite.writerow(matches)
+    csvwrite.writerow([s1])
     csvwrite.writerow(["Best score:", my_best_score])
-    csvwrite.writerow(best_aligns)
-    csvwrite.writerow(s1)
 
     return 0
 

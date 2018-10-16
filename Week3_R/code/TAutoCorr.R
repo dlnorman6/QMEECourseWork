@@ -1,0 +1,1 @@
+data <- load("../data/KeyWestAnnualMeanTemperature.Rdata")

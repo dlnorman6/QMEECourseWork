@@ -1,14 +1,19 @@
 #!/usr/bin/env python3
 
+"""Aligns two DNA sequences stored in a single data file such that they are as similar as possible and outputs the best alignment along with its score (number of base matches) to file '../results/BestAlign.csv' """ 
+
+__appname__ = 'align_seqs.py'
+__author__ = 'Danielle Norman (daniellenorman6@gmail.com)'
+__version__ = '0.0.1'
+
 import csv
 import sys
 import pdb
 import doctest
 
-# function that computes a score
-# by returning the number of matches 
-# starting from arbitrary startpoint
+
 def calculate_score(s1, s2, l1, l2, startpoint):
+    """Calculates the number of base matches, i.e. score, in two DNA sequences for each possible starting position"""
     # startpoint is the point at which we want to start
     matched = "" # contains string for alignment
     score = 0
@@ -32,7 +37,7 @@ def calculate_score(s1, s2, l1, l2, startpoint):
 
 def main(argv): 
     f = open('../data/SeqsToAlign.csv','r')
-    g = open('../data/BestAlign.csv','w')
+    g = open('../results/BestAlign.csv','w')
     data = csv.reader(f)
     csvwrite = csv.writer(g)
 
@@ -45,8 +50,7 @@ def main(argv):
 
     print(seq1)
 
-    # assign the longest sequence s1, and the shortest to s2
-    # l1 is the length of the longest, l2 that of the shortest
+    # assign the longest sequence s1, with length l1, and the shortest to s2, with length l2
 
     l1 = len(seq1)
     l2 = len(seq2)
@@ -73,8 +77,8 @@ def main(argv):
             my_best_align = "." * i + s2
             my_best_score = z
 
-    csvwrite.writerow(my_best_align)
-    csvwrite.writerow(s1)
+    csvwrite.writerow([my_best_align])
+    csvwrite.writerow([s1])
     csvwrite.writerow(["Best score:", my_best_score])
     return 0
 
