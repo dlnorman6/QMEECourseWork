@@ -4,4 +4,6 @@
 *.pyc
 *pycache/
 *results/**
+*sandbox/**
+*Sandbox/**
 *.pdf
