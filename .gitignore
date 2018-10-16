@@ -3,5 +3,5 @@
 *.log
 *.pyc
 *pycache/
-*Results/**
+*results/**
 *.pdf
