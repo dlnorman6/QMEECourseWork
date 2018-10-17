@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-""" Description: """
+""" Description: boilerplate for python"""
 
 __appname__ = 'boilerplate'
 __author__ = 'Danielle Norman (daniellenorman6@gmail.com)'

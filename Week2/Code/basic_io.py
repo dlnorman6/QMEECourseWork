@@ -1,3 +1,5 @@
+
+"""Examples of reading in .txt files, skipping lines, saving list elements to .txt files, and pickle"""
 #################
 # FILE INPUT
 #################

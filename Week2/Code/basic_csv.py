@@ -1,3 +1,5 @@
+"""Examples of reading and writing csv files in python"""
+
 import csv
 
 # Read a file containing:
@@ -13,7 +15,7 @@ for row in csvread:
 
 f.close()
 
-# write a file containing only species name and body mass
+# Write a file containing only species name and body mass
 f = open('../data/testcsv','r')
 g = open('../data/bodymass.csv','w')
 

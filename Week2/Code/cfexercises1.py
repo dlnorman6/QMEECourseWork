@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+"""Control flow examples: for and while loops"""
+
 # Desc: number of hello's printed
 for i in range(3,17): #14
     print('hello')
