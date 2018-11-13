@@ -1,0 +1,8 @@
+# Author: Danielle Norman 
+# Script:run_LVscripts.sh
+# Desc: runs LV1.py and LV2.py with profiling
+# Date: Nov 2018
+
+%run -p -l 10 LV1.py
+%run -p -l 10 LV2.py 2. 0.5 1.5 0.75
+%run -p -l 10 LV3.py 2. 0.5 1.5 0.75
